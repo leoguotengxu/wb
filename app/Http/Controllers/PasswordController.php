@@ -50,6 +50,13 @@ class PasswordController extends Controller
         session()->flash('success', '重置邮件发送成功，请查收');
         return redirect()->back();
     }
+
+    public function showResetForm(Request $request)
+    {
+        $token = $request->route()->parameter('token');
+        return view('auth.passwords.reset', compact('token'));
+    }
+
     public function reset(Request $request)
     {
         // 1. 验证数据是否合规
